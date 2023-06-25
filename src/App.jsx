@@ -12,6 +12,7 @@ import Seguimientos from "./components/seguimientos";
 import OportunidadesPorMes from "./components/oportunidadesPorMes";
 import ReporteCotizacion from "./components/reporteCotizacion";
 import VentasSinEntrada from "./components/ventasSinTaller";
+import Firma from "./components/firma";
 export default function App() {
-  return <VentasSinEntrada info={dataVentasSinTaller} />;
+  return <Firma />;
 }
