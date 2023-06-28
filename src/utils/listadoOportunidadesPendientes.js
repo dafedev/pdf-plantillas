@@ -982,6 +982,7 @@ export const styles = StyleSheet.create({
   },
   sectionProducts: {
     minWidth: "100%",
+    fontSize: 7,
   },
   header: {
     fontSize: 9,
@@ -996,6 +997,7 @@ export const styles = StyleSheet.create({
   sectionProductsContent: {
     display: "flex",
     flexDirection: "row",
+    fontSize: 7,
   },
   sectionProductsContentItem: {
     display: "flex",
