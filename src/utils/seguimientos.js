@@ -4,7 +4,6 @@ import moment from "moment";
 export const styles = StyleSheet.create({
   page: {
     flexDirection: "column",
-    textTransform: "uppercase",
     paddingTop: 35,
     paddingBottom: 65,
     paddingLeft: 27,
@@ -14,6 +13,7 @@ export const styles = StyleSheet.create({
   headerTitle: {
     fontFamily: "Helvetica-Bold",
     alignSelf: "center",
+    fontSize: 13,
     marginTop: 10,
     marginBottom: 10,
   },
