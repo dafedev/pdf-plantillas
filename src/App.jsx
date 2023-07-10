@@ -9,6 +9,7 @@ import { data as dataInformeVentas } from "./utils/informeVentas";
 import { data as dataProductoVendedor } from "./utils/productoVendedor";
 import { data as dataPagoBancos } from "./utils/pagoBancos";
 import { data as dataListadoComprobantes } from "./utils/listadoComprobantes";
+import { data as dataReporteFlujos } from "./utils/reporteFlujos";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -21,7 +22,8 @@ import InformeVentas from "./components/informeVentas";
 import ProductoVendedor from "./components/productoPorVendedor";
 import PagosBancos from "./components/pagosBancos";
 import ListadoComprobantes from "./components/listadoComprobantes";
+import ReporteFlujos from "./components/reporteFlujos";
 
 export default function App() {
-  return <ListadoComprobantes info={dataListadoComprobantes} />;
+  return <ReporteFlujos info={dataReporteFlujos} />;
 }
