@@ -6,12 +6,8 @@ import {
   PDFViewer,
   Svg,
   Line,
-  Rect,
-  Image,
 } from "@react-pdf/renderer";
 import { styles } from "../utils/reporteFlujos";
-import "moment/locale/es";
-import moment from "moment";
 
 const MyDocument = ({ info }) => {
   const {
