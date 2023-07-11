@@ -11,6 +11,7 @@ import { data as dataPagoBancos } from "./utils/pagoBancos";
 import { data as dataListadoComprobantes } from "./utils/listadoComprobantes";
 import { data as dataReporteFlujos } from "./utils/reporteFlujos";
 import { data as dataExogenas } from "./utils/exogena";
+import { data as dataEntradaProducto } from "./utils/entradaProducto";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -25,7 +26,8 @@ import PagosBancos from "./components/pagosBancos";
 import ListadoComprobantes from "./components/listadoComprobantes";
 import ReporteFlujos from "./components/reporteFlujos";
 import Exogena from "./components/exogena";
+import EntradaProducto from "./components/entradaProducto";
 
 export default function App() {
-  return <Exogena info={dataExogenas} />;
+  return <EntradaProducto info={dataEntradaProducto} />;
 }
