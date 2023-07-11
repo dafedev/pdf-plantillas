@@ -12,6 +12,7 @@ import { data as dataListadoComprobantes } from "./utils/listadoComprobantes";
 import { data as dataReporteFlujos } from "./utils/reporteFlujos";
 import { data as dataExogenas } from "./utils/exogena";
 import { data as dataEntradaProducto } from "./utils/entradaProducto";
+import { data as dataInventario } from "./utils/inventario";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -27,7 +28,8 @@ import ListadoComprobantes from "./components/listadoComprobantes";
 import ReporteFlujos from "./components/reporteFlujos";
 import Exogena from "./components/exogena";
 import EntradaProducto from "./components/entradaProducto";
+import Inventario from "./components/inventario";
 
 export default function App() {
-  return <EntradaProducto info={dataEntradaProducto} />;
+  return <Inventario info={dataInventario} />;
 }
