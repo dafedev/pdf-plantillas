@@ -1,4 +1,5 @@
 import { StyleSheet } from "@react-pdf/renderer";
+import moment from "moment";
 
 export const styles = StyleSheet.create({
   page: {
@@ -170,14 +171,19 @@ export const styles = StyleSheet.create({
 });
 
 export const data = {
-  cedula: "8816261",
-  names: "BERNY MOTOS",
-  address: "cra 15 # 13a - 38",
-  cellphone: "",
-  nameEnterprise: "IMPORTADORA ROMA OM SAS",
-  consec: 1472,
-  date: "17/02/2018",
-  total: 1283867,
-  balance: 1283867,
-  totalBalance: 1283867,
+  nameSeller: "OMAR OBANDO QUIRAMA",
+  address: "CRA 18 31-23",
+  total: 50000,
+  data: [
+    {
+      cedula: "16862709",
+      names: "CARLOS CAMILO",
+      balance: 25000,
+    },
+    {
+      cedula: "16862709",
+      names: "CARLOS CAMILO",
+      balance: 25000,
+    },
+  ],
 };

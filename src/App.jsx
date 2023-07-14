@@ -15,6 +15,7 @@ import { data as dataEntradaProducto } from "./utils/entradaProducto";
 import { data as dataInventario } from "./utils/inventario";
 import { data as dataAgotados } from "./utils/agotados";
 import { data as dataEstadoCuenta } from "./utils/estadoCuenta";
+import { data as dataEstadoCuentaTotalizada } from "./utils/estadoCuentaTotalizada";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -33,7 +34,8 @@ import EntradaProducto from "./components/entradaProducto";
 import Inventario from "./components/inventario";
 import Agotados from "./components/agotados";
 import EstadoCuenta from "./components/estadoCuenta";
+import EstadoCuentaTotalizada from "./components/estadoCuentaTotalizada";
 
 export default function App() {
-  return <EstadoCuenta info={dataEstadoCuenta} />;
+  return <EstadoCuentaTotalizada info={dataEstadoCuentaTotalizada} />;
 }
