@@ -13,6 +13,8 @@ import { data as dataReporteFlujos } from "./utils/reporteFlujos";
 import { data as dataExogenas } from "./utils/exogena";
 import { data as dataEntradaProducto } from "./utils/entradaProducto";
 import { data as dataInventario } from "./utils/inventario";
+import { data as dataAgotados } from "./utils/agotados";
+import { data as dataEstadoCuenta } from "./utils/estadoCuenta";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -29,7 +31,9 @@ import ReporteFlujos from "./components/reporteFlujos";
 import Exogena from "./components/exogena";
 import EntradaProducto from "./components/entradaProducto";
 import Inventario from "./components/inventario";
+import Agotados from "./components/agotados";
+import EstadoCuenta from "./components/estadoCuenta";
 
 export default function App() {
-  return <Inventario info={dataInventario} />;
+  return <EstadoCuenta info={dataEstadoCuenta} />;
 }
