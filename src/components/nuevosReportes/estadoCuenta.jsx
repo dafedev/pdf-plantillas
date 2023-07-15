@@ -7,7 +7,7 @@ import {
   Svg,
   Line,
 } from "@react-pdf/renderer";
-import { styles } from "../utils/estadoCuenta";
+import { styles } from "../../utils/estadoCuenta";
 
 const MyDocument = ({ info }) => {
   return (

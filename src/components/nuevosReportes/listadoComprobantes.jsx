@@ -9,10 +9,10 @@ import {
   Line,
   Image,
 } from "@react-pdf/renderer";
-import { styles } from "../utils/listadoComprobantes";
+import { styles } from "../../utils/listadoComprobantes";
 import "moment/locale/es";
 import moment from "moment";
-import MyChart from "../components/barChartListado";
+import MyChart from "./barChartListado";
 
 const MyDocument = ({ info }) => {
   const chartContainerRef = useRef(null);

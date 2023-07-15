@@ -1,5 +1,5 @@
 import { Page, Text, View, Document, PDFViewer } from "@react-pdf/renderer";
-import { styles } from "../utils/reporteFlujos";
+import { styles } from "../../utils/exogena";
 
 const MyDocument = ({ info }) => {
   const { dateQuery, data, total, base, totalIva, totalBounty, exempt } = info;

@@ -1,5 +1,5 @@
 import { Page, Text, View, Document, PDFViewer } from "@react-pdf/renderer";
-import { styles } from "../utils/estadoCuentaTotalizada";
+import { styles } from "../../utils/estadoCuentaTotalizada";
 
 const MyDocument = ({ info }) => {
   const { nameSeller, data, address, total } = info;

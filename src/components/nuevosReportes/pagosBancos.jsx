@@ -9,10 +9,10 @@ import {
   Line,
   Image,
 } from "@react-pdf/renderer";
-import { styles } from "../utils/pagoBancos";
+import { styles } from "../../utils/pagoBancos";
 import "moment/locale/es";
 import moment from "moment";
-import MyChart from "../components/pieChart";
+import MyChart from "../pieChart";
 const MyDocument = ({ info }) => {
   const chartContainerRef = useRef(null);
   const { dateQuery, data, totalValue, totalCredit, totalDebit } = info;

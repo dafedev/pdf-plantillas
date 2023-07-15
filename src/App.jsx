@@ -17,6 +17,7 @@ import { data as dataAgotados } from "./utils/agotados";
 import { data as dataEstadoCuenta } from "./utils/estadoCuenta";
 import { data as dataEstadoCuentaTotalizada } from "./utils/estadoCuentaTotalizada";
 import { data as dataCuentaEdades } from "./utils/carteraEdades";
+import { data as dataRotacion } from "./utils/rotacion";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -27,17 +28,18 @@ import VentasSinEntrada from "./components/ventasSinTaller";
 import Firma from "./components/firma";
 import InformeVentas from "./components/informeVentas";
 import ProductoVendedor from "./components/productoPorVendedor";
-import PagosBancos from "./components/pagosBancos";
-import ListadoComprobantes from "./components/listadoComprobantes";
-import ReporteFlujos from "./components/reporteFlujos";
-import Exogena from "./components/exogena";
-import EntradaProducto from "./components/entradaProducto";
-import Inventario from "./components/inventario";
-import Agotados from "./components/agotados";
-import EstadoCuenta from "./components/estadoCuenta";
-import EstadoCuentaTotalizada from "./components/estadoCuentaTotalizada";
-import CarteraEdades from "./components/carteraEdades";
+import PagosBancos from "./components/nuevosReportes/pagosBancos";
+import ListadoComprobantes from "./components/nuevosReportes/listadoComprobantes";
+import ReporteFlujos from "./components/nuevosReportes/reporteFlujos";
+import Exogena from "./components/nuevosReportes/exogena";
+import EntradaProducto from "./components/nuevosReportes/entradaProducto";
+import Inventario from "./components/nuevosReportes/inventario";
+import Agotados from "./components/nuevosReportes/agotados";
+import EstadoCuenta from "./components/nuevosReportes/estadoCuenta";
+import EstadoCuentaTotalizada from "./components/nuevosReportes/estadoCuentaTotalizada";
+import CarteraEdades from "./components/nuevosReportes/carteraEdades";
+import Rotacion from "./components/nuevosReportes/rotacion";
 
 export default function App() {
-  return <CarteraEdades info={dataCuentaEdades} />;
+  return <Rotacion info={dataRotacion} />;
 }

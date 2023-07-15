@@ -1,5 +1,5 @@
 import { Page, Text, View, Document, PDFViewer } from "@react-pdf/renderer";
-import { styles } from "../utils/entradaProducto";
+import { styles } from "../../utils/entradaProducto";
 
 const MyDocument = ({ info }) => {
   const {

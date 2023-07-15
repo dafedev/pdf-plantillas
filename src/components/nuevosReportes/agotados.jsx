@@ -7,7 +7,7 @@ import {
   Svg,
   Line,
 } from "@react-pdf/renderer";
-import { styles } from "../utils/inventario";
+import { styles } from "../../utils/inventario";
 
 const MyDocument = ({ info }) => {
   const {
@@ -73,7 +73,7 @@ const Header = ({ dateQuery }) => {
       <View fixed>
         <View style={styles.sectionProducts} fixed>
           <Text>{dateQuery}</Text>
-          <Text style={styles.headerTitle}>REPORTE DE PRODUCTO</Text>
+          <Text style={styles.headerTitle}>REPORTE DE PRODUCTOS AGOTADOS</Text>
           <Text></Text>
         </View>
 
@@ -92,12 +92,11 @@ const Header = ({ dateQuery }) => {
 
         <View style={styles.sectionProducts}>
           <Text style={styles.headerCell}>Cod.</Text>
-          <Text style={styles.headerCell3}></Text>
-          <Text style={styles.headerCell}>P. Distribuidor</Text>
-          <Text style={styles.headerCell}>P. Costo</Text>
+          <Text style={styles.headerCell2}>Referencia</Text>
+          <Text style={styles.headerCell3}>Producto</Text>
           <Text style={styles.headerCell}>P. Venta</Text>
           <Text style={styles.headerCell}>Disponible</Text>
-          <Text style={styles.headerCell}>V. Inventario</Text>
+          <Text style={styles.headerCell}>Existencia mínima</Text>
         </View>
       </View>
       <View>
@@ -127,16 +126,13 @@ const Content = ({
         return (
           <>
             <View>
-              <View style={[styles.bold, { marginTop: 10 }]}>
-                <View style={styles.sectionProductsContent}>
-                  <Text style={styles.contentCell}></Text>
-                  <Text style={styles.contentCell3}>{item.product}</Text>
-                  <Text style={styles.contentCell}></Text>
-                  <Text style={styles.contentCell}></Text>
-                  <Text style={styles.contentCell}></Text>
-                  <Text style={styles.contentCell}></Text>
-                  <Text style={styles.contentCell}></Text>
-                </View>
+              <View
+                style={[
+                  styles.bold,
+                  { marginVertical: 10, marginBottom: 20, textAlign: "center" },
+                ]}
+              >
+                <Text style={styles.contentCell3}>{item.product}</Text>
               </View>
 
               {item.products.map((product) => {
@@ -144,13 +140,10 @@ const Content = ({
                   <>
                     <View style={styles.sectionProductsContent}>
                       <Text style={styles.contentCell}>{product.cod}</Text>
+                      <Text style={styles.contentCell2}>
+                        {product.reference}
+                      </Text>
                       <Text style={styles.contentCell3}>{product.name}</Text>
-                      <Text style={styles.contentCell}>
-                        {formatNumber(product.distribuidor)}
-                      </Text>
-                      <Text style={styles.contentCell}>
-                        {formatNumber(product.costo)}
-                      </Text>
                       <Text style={styles.contentCell}>
                         {formatNumber(product.venta)}
                       </Text>
@@ -158,7 +151,7 @@ const Content = ({
                         {product.disponible}
                       </Text>
                       <Text style={styles.contentCell}>
-                        {formatNumber(product.inventario)}
+                        {product.existenciaM}
                       </Text>
                     </View>
                   </>
@@ -180,40 +173,15 @@ const Content = ({
 
               <View style={[styles.bold]}>
                 <View style={styles.sectionProductsContent}>
-                  <Text style={styles.contentCell}></Text>
                   <Text style={styles.contentCell3}>{item.product}</Text>
-                  <Text style={styles.contentCell}>
-                    {formatNumber(item.subTotalDistribuidor)}
-                  </Text>
-                  <Text style={styles.contentCell}>
-                    {formatNumber(item.subTotalCosto)}
-                  </Text>
+                  <Text style={styles.contentCell}></Text>
+                  <Text style={styles.contentCell2}></Text>
                   <Text style={styles.contentCell}>
                     {formatNumber(item.subTotalVenta)}
                   </Text>
                   <Text style={styles.contentCell}>
                     {item.subTotalDisponible}
                   </Text>
-                  <Text style={styles.contentCell}>
-                    {formatNumber(item.subTotalInventario)}
-                  </Text>
-                </View>
-              </View>
-
-              <View style={[styles.bold]}>
-                <View style={styles.sectionProductsContent}>
-                  <Text style={styles.contentCell}></Text>
-                  <Text style={styles.contentCell3}>SUBTOTAL: </Text>
-                  <Text style={styles.contentCell}>
-                    {formatNumber(item.secSubTotalDistribuidor)}
-                  </Text>
-                  <Text style={styles.contentCell}>
-                    {formatNumber(item.secSubTotalCosto)}
-                  </Text>
-                  <Text style={styles.contentCell}>
-                    {formatNumber(item.SecSubTotalVenta)}
-                  </Text>
-                  <Text style={styles.contentCell}></Text>
                   <Text style={styles.contentCell}></Text>
                 </View>
               </View>
@@ -230,17 +198,12 @@ const Content = ({
 
       <View style={[styles.bold]}>
         <View style={styles.sectionProductsContent}>
-          <Text style={styles.contentCell}></Text>
           <Text style={styles.contentCell3}>Total general:</Text>
-          <Text style={styles.contentCell}>
-            {formatNumber(totalDistribuidor)}
-          </Text>
-          <Text style={styles.contentCell}>{formatNumber(totalCosto)}</Text>
+          <Text style={styles.contentCell2}></Text>
+          <Text style={styles.contentCell}></Text>
           <Text style={styles.contentCell}>{formatNumber(totalVenta)}</Text>
-          <Text style={styles.contentCell}>{totalDisponible}</Text>
-          <Text style={styles.contentCell}>
-            {formatNumber(totalInventario)}
-          </Text>
+          <Text style={styles.contentCell}></Text>
+          <Text style={styles.contentCell}></Text>
         </View>
       </View>
     </>
