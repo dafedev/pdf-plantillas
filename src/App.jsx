@@ -20,6 +20,7 @@ import { data as dataCuentaEdades } from "./utils/carteraEdades";
 import { data as dataRotacion } from "./utils/rotacion";
 import { data as dataProductoVenta } from "./utils/productosVenta";
 import { data as dataProductoCliente } from "./utils/productosClientes";
+import { data as dataProductoHistoricos } from "./utils/productosHistorico";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -43,7 +44,8 @@ import CarteraEdades from "./components/nuevosReportes/carteraEdades";
 import Rotacion from "./components/nuevosReportes/rotacion";
 import ProductosVenta from "./components/nuevosReportes/productosVenta";
 import ProductosClientes from "./components/nuevosReportes/productosClientes";
+import ProductosHistoricos from "./components/nuevosReportes/productosHistoricos";
 
 export default function App() {
-  return <ProductosClientes info={dataProductoCliente} />;
+  return <ProductosHistoricos info={dataProductoHistoricos} />;
 }
