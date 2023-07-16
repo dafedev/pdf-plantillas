@@ -19,6 +19,7 @@ import { data as dataEstadoCuentaTotalizada } from "./utils/estadoCuentaTotaliza
 import { data as dataCuentaEdades } from "./utils/carteraEdades";
 import { data as dataRotacion } from "./utils/rotacion";
 import { data as dataProductoVenta } from "./utils/productosVenta";
+import { data as dataProductoCliente } from "./utils/productosClientes";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -41,7 +42,8 @@ import EstadoCuentaTotalizada from "./components/nuevosReportes/estadoCuentaTota
 import CarteraEdades from "./components/nuevosReportes/carteraEdades";
 import Rotacion from "./components/nuevosReportes/rotacion";
 import ProductosVenta from "./components/nuevosReportes/productosVenta";
+import ProductosClientes from "./components/nuevosReportes/productosClientes";
 
 export default function App() {
-  return <ProductosVenta info={dataProductoVenta} />;
+  return <ProductosClientes info={dataProductoCliente} />;
 }
