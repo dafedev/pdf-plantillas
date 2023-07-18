@@ -145,42 +145,8 @@ const Content = ({ dataUser }) => {
               ))}
             </>
           ))}
-          {/* {item.dataProducts.map((items) => (
-            <>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <View style={{ display: "flex", flexDirection: "row" }}>
-                  <Text style={[styles.bold, { marginRight: 20 }]}>
-                    Consecutivo:
-                  </Text>
-                  <Text style={styles.boldB}>{items.consecutive}</Text>
-                </View>
-                <View style={{ display: "flex", flexDirection: "row" }}>
-                  <Text style={[styles.bold, { marginRight: 20 }]}>Fecha:</Text>
-                  <Text style={styles.bold}>{items.dateTime}</Text>
-                </View>
-              </View>
-              
-            </>
-          ))} */}
         </>
       ))}
-      {/* <View style={styles.bold}>
-        <View style={styles.sectionProducts}>
-          <Text style={styles.headerCell3}></Text>
-          <Text style={styles.headerCell}></Text>
-          <Text style={styles.headerCell2}>Total Costos:</Text>
-          <Text style={styles.headerCell2}>{formatNumber(22)}</Text>
-          <Text style={styles.headerCell2}></Text>
-          <Text style={styles.headerCell2}></Text>
-          <Text style={styles.headerCell}></Text>
-        </View>
-      </View> */}
     </>
   );
 };

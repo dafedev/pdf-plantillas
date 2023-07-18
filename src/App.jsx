@@ -21,6 +21,7 @@ import { data as dataRotacion } from "./utils/rotacion";
 import { data as dataProductoVenta } from "./utils/productosVenta";
 import { data as dataProductoCliente } from "./utils/productosClientes";
 import { data as dataProductoHistoricos } from "./utils/productosHistorico";
+import { data as dataProductoSugeridos } from "./utils/productoSugerido";
 import ListadoOportunidades from "./components/listadoOportunidades";
 import OportunidadesPendientes from "./components/oportunidadesPendientes";
 import Oportunidades from "./components/oportunidades";
@@ -45,7 +46,8 @@ import Rotacion from "./components/nuevosReportes/rotacion";
 import ProductosVenta from "./components/nuevosReportes/productosVenta";
 import ProductosClientes from "./components/nuevosReportes/productosClientes";
 import ProductosHistoricos from "./components/nuevosReportes/productosHistoricos";
+import ProductoSugerido from "./components/nuevosReportes/productoSugerido";
 
 export default function App() {
-  return <ProductosHistoricos info={dataProductoHistoricos} />;
+  return <ProductoSugerido info={dataProductoSugeridos} />;
 }
