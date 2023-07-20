@@ -10,6 +10,7 @@ export const data = {
     {
       id: 1,
       name: "Banco de Bogotá",
+      date: "07-07-2023",
       card: [
         {
           typeCard: "Tarjetas débito",
@@ -108,6 +109,13 @@ export const styles = StyleSheet.create({
     paddingLeft: 27,
     paddingRight: 30,
     fontSize: 9,
+  },
+  underline: {
+    textDecoration: "underline",
+  },
+  viewerStyles: {
+    height: "100vh",
+    width: "100vw",
   },
   spacingLeft: {
     paddingLeft: 100,

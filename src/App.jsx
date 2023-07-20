@@ -49,5 +49,5 @@ import ProductosHistoricos from "./components/nuevosReportes/productosHistoricos
 import ProductoSugerido from "./components/nuevosReportes/productoSugerido";
 
 export default function App() {
-  return <ProductoSugerido info={dataProductoSugeridos} />;
+  return <PagosBancos selectedOption={1} info={dataPagoBancos} />;
 }
