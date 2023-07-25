@@ -283,3 +283,53 @@ export const data = {
     },
   ],
 };
+
+export const data2 = {
+  dateQuery: moment().format("YYYY/MM/DD"),
+  data: [
+    {
+      nameProduct: "ACEITE 20W50 ADVANCE SHELL",
+      reference: "20W50 ADVANCE",
+      initial: 101,
+      entrance: 1,
+      output: 0,
+      sells: 0,
+      transEntrance: 0,
+      transOutput: 0,
+      available: 101,
+    },
+    {
+      nameProduct: "ACEITE 20W50 ADVANCE SHELL",
+      reference: "20W50 ADVANCE",
+      initial: 101,
+      entrance: 1,
+      output: 0,
+      sells: 0,
+      transEntrance: 0,
+      transOutput: 0,
+      available: 101,
+    },
+    {
+      nameProduct: "ACEITE 20W50 ADVANCE SHELL",
+      reference: "20W50 ADVANCE",
+      initial: 101,
+      entrance: 1,
+      output: 0,
+      sells: 0,
+      transEntrance: 0,
+      transOutput: 0,
+      available: 101,
+    },
+    {
+      nameProduct: "ACEITE 20W50 ADVANCE SHELL",
+      reference: "20W50 ADVANCE",
+      initial: 101,
+      entrance: 1,
+      output: 0,
+      sells: 0,
+      transEntrance: 0,
+      transOutput: 0,
+      available: 101,
+    },
+  ],
+};

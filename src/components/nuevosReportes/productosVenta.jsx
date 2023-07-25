@@ -6,10 +6,30 @@ import {
   PDFViewer,
   Svg,
   Line,
+  Image,
 } from "@react-pdf/renderer";
+import React, { useState, useRef, useEffect } from "react";
 import { styles } from "../../utils/inventario";
+import MyChart from "../pieChartVentas";
 
-const MyDocument = ({ info }) => {
+const MyDocument = ({ selectedOption, info }) => {
+  const [render, setRender] = useState(1);
+
+  useEffect(() => {
+    setRender(selectedOption);
+  }, [selectedOption]);
+
+  if (render === 1) {
+    return <ReporteVenta info={info} />;
+  }
+  if (render === 2) {
+    return <ReporteVentaTipo info={info} />;
+  }
+};
+
+export default MyDocument;
+
+const ReporteVenta = ({ info }) => {
   const {
     dateQuery,
     data,
@@ -64,7 +84,48 @@ const MyDocument = ({ info }) => {
   );
 };
 
-export default MyDocument;
+const ReporteVentaTipo = ({ info }) => {
+  const chartContainerRef = useRef(null);
+  const { dateQuery, data, totalQuantity, totalSubTotal } = info;
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    if (chartContainerRef?.current) {
+      setTimeout(() => {
+        (async () => {
+          const imageURI = await chartContainerRef.current.getImageUri();
+          setImage(imageURI);
+        })();
+      }, 1000);
+    }
+  }, [data]);
+
+  return (
+    <>
+      {!image && (
+        <>
+          <MyChart
+            titleChart="Suma de Cantidad / NombreTipoProducto"
+            ref={chartContainerRef}
+            data={data}
+          />
+        </>
+      )}
+      <PDFViewer style={styles.viewerStyles}>
+        <Document>
+          <Page size="A4" style={styles.page}>
+            <HeaderTipo dateQuery={dateQuery} image={image} />
+            <ContentTipo
+              dataUser={data}
+              totalQuantity={totalQuantity}
+              totalSubTotal={totalSubTotal}
+            />
+          </Page>
+        </Document>
+      </PDFViewer>
+    </>
+  );
+};
 
 const Header = ({ dateQuery }) => {
   return (
@@ -92,7 +153,49 @@ const Header = ({ dateQuery }) => {
     </>
   );
 };
+const HeaderTipo = ({ dateQuery, image }) => {
+  return (
+    <>
+      <View>
+        <View style={styles.sectionProducts} fixed>
+          <Text>{dateQuery}</Text>
+          <Text style={styles.headerTitle}></Text>
+          <Text></Text>
+        </View>
 
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            marginVertical: "20px",
+          }}
+        >
+          {image && (
+            <Image
+              src={image}
+              style={{
+                width: "150px",
+                height: "150px",
+                marginHorizontal: "20px",
+              }}
+            />
+          )}
+        </View>
+
+        <View style={styles.sectionProducts} fixed>
+          <Text style={styles.headerCell2}>Tipo Producto</Text>
+          <Text style={styles.headerCell}>Cod</Text>
+          <Text style={styles.headerCell3}>Nombre</Text>
+          <Text style={styles.headerCell}>Cant</Text>
+          <Text style={styles.headerCell2}>Valor Producto</Text>
+          <Text style={styles.headerCell}>SubTotal</Text>
+        </View>
+      </View>
+    </>
+  );
+};
 const Content = ({
   dataUser,
   totalQuantity,
@@ -229,6 +332,146 @@ const Content = ({
           <Text style={styles.contentCell}>{formatNumber(totalUtility)}</Text>
           <Text style={styles.contentCell}>{}</Text>
         </View>
+      </View>
+    </>
+  );
+};
+const ContentTipo = ({ dataUser, totalQuantity, totalSubTotal }) => {
+  const formatNumber = (number) => {
+    return "$ " + new Intl.NumberFormat("es-ES").format(number);
+  };
+
+  return (
+    <>
+      <View style={{ marginTop: 10 }}>
+        {dataUser.map((item) => (
+          <>
+            <Text style={styles.bold}>{item.typeProduct}</Text>
+            <Svg height="3" width="150">
+              <Line
+                x1="0"
+                y1="0"
+                x2="150"
+                y2="0"
+                stroke="black"
+                strokeWidth="3"
+              />
+            </Svg>
+
+            {item.products.map((product) => (
+              <>
+                <View
+                  style={[
+                    styles.sectionProductsContent,
+                    { marginTop: 10, marginLeft: 3 },
+                  ]}
+                >
+                  <Text style={styles.contentCell2}></Text>
+                  <Text style={styles.contentCell}>{product.code}</Text>
+                  <Text style={styles.contentCell3}>{product.name}</Text>
+                  <Text style={styles.contentCell}></Text>
+                  <Text style={styles.contentCell2}></Text>
+                  <Text style={styles.contentCell}></Text>
+                </View>
+
+                {product.sells.map((items) => (
+                  <>
+                    <View
+                      style={[styles.sectionProductsContent, { marginLeft: 3 }]}
+                    >
+                      <Text style={styles.contentCell2}>
+                        {items.typeProduct}
+                      </Text>
+                      <Text style={styles.contentCell}></Text>
+                      <Text style={styles.contentCell3}></Text>
+                      <Text style={styles.contentCell}>{items.quantity}</Text>
+                      <Text style={styles.contentCell2}>
+                        {formatNumber(items.valueProduct)}
+                      </Text>
+                      <Text style={styles.contentCell}>
+                        {formatNumber(items.subTotal)}
+                      </Text>
+                    </View>
+                  </>
+                ))}
+                <View
+                  style={[
+                    styles.sectionProductsContent,
+                    { marginTop: 10, marginLeft: 3 },
+                  ]}
+                >
+                  <Text style={styles.contentCell2}></Text>
+                  <Text style={styles.contentCell}></Text>
+                  <Text
+                    style={[styles.contentCell3, styles.bold, styles.underLine]}
+                  >
+                    SUBTOTAL:
+                  </Text>
+                  <Text style={[styles.contentCell, styles.bold]}>
+                    {product.quantity}
+                  </Text>
+                  <Text style={styles.contentCell2}></Text>
+                  <Text style={[styles.contentCell, styles.bold]}>
+                    {formatNumber(product.subTotal)}
+                  </Text>
+                </View>
+              </>
+            ))}
+            <Svg height="3" width="100%" style={{ marginTop: 10 }}>
+              <Line
+                x1="0"
+                y1="0"
+                x2="1000"
+                y2="0"
+                stroke="black"
+                strokeWidth="3"
+              />
+            </Svg>
+            <View
+              style={[styles.sectionProducts, styles.bold, { marginTop: 10 }]}
+            >
+              <Text style={styles.headerCell2}></Text>
+              <Text style={styles.headerCell}>Cant</Text>
+              <Text style={styles.headerCell3}>Total</Text>
+              <Text style={styles.headerCell}></Text>
+              <Text style={styles.headerCell2}></Text>
+              <Text style={styles.headerCell}></Text>
+            </View>
+
+            <View
+              style={[
+                styles.sectionProductsContent,
+                { marginTop: 10, marginBottom: 10, marginLeft: 3 },
+                styles.bold,
+              ]}
+            >
+              <Text style={styles.contentCell2}>{item.typeProduct}</Text>
+              <Text style={styles.contentCell}>{item.quantity}</Text>
+              <Text style={styles.contentCell3}>{item.totalSubTotal}</Text>
+              <Text style={styles.contentCell}></Text>
+              <Text style={styles.contentCell2}></Text>
+              <Text style={styles.contentCell}></Text>
+            </View>
+          </>
+        ))}
+      </View>
+
+      <Svg height="3" width="100%">
+        <Line x1="0" y1="0" x2="1000" y2="0" stroke="black" strokeWidth="3" />
+      </Svg>
+      <View
+        style={[
+          styles.sectionProductsContent,
+          { marginTop: 10, marginLeft: 3 },
+          styles.bold,
+        ]}
+      >
+        <Text style={styles.contentCell2}>Total general</Text>
+        <Text style={styles.contentCell}></Text>
+        <Text style={styles.contentCell3}></Text>
+        <Text style={styles.contentCell}>{totalQuantity}</Text>
+        <Text style={styles.contentCell2}></Text>
+        <Text style={styles.contentCell}>{formatNumber(totalSubTotal)}</Text>
       </View>
     </>
   );

@@ -277,3 +277,132 @@ export const data = {
     },
   ],
 };
+export const data2 = {
+  dateQuery: moment().format("YYYY/MM/DD"),
+  totalQuantity: 2,
+  totalSubTotal: 112000,
+  data: [
+    {
+      typeProduct: "ZAPATILLAS",
+      quantity: 2,
+      totalSubTotal: 112000,
+      products: [
+        {
+          typeProduct: "ZAPATILLAS",
+          code: "1",
+          name: "ZAPATILLAS NIKE",
+          quantity: 3,
+          subTotal: 83000000,
+          sells: [
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+          ],
+        },
+        {
+          typeProduct: "ZAPATILLAS",
+          code: "1",
+          name: "ZAPATILLAS NIKE",
+          quantity: 3,
+          subTotal: 83000000,
+          sells: [
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      typeProduct: "ZAPATILLAS",
+      quantity: 2,
+      totalSubTotal: 112000,
+      products: [
+        {
+          typeProduct: "ZAPATILLAS",
+          code: "1",
+          name: "ZAPATILLAS NIKE",
+          quantity: 3,
+          subTotal: 83000000,
+          sells: [
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+          ],
+        },
+        {
+          typeProduct: "ZAPATILLAS",
+          code: "1",
+          name: "ZAPATILLAS NIKE",
+          quantity: 3,
+          subTotal: 83000000,
+          sells: [
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+            {
+              typeProduct: "ZAPATILLAS",
+              quantity: 2,
+              valueProduct: 6900000,
+              subTotal: 27600000,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
