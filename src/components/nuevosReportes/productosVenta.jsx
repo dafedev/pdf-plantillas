@@ -162,7 +162,9 @@ const HeaderTipo = ({ dateQuery, image }) => {
           <Text style={styles.headerTitle}></Text>
           <Text></Text>
         </View>
-
+        <Text style={[styles.bold, { fontSize: 12, textAlign: "center" }]}>
+          Suma de Cantidad / NombreTipoProducto
+        </Text>
         <View
           style={{
             display: "flex",

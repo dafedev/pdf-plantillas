@@ -51,5 +51,5 @@ import ProductosHistoricos from "./components/nuevosReportes/productosHistoricos
 import ProductoSugerido from "./components/nuevosReportes/productoSugerido";
 
 export default function App() {
-  return <ProductosVenta selectedOption={2} info={dataProductoVentaDos} />;
+  return <Inventario selectedOption={4} info={dataInventario} />;
 }

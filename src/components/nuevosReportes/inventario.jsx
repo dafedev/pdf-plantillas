@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Page,
   Text,
@@ -6,10 +7,37 @@ import {
   PDFViewer,
   Svg,
   Line,
+  Image,
 } from "@react-pdf/renderer";
 import { styles } from "../../utils/inventario";
 
-const MyDocument = ({ info }) => {
+const MyDocument = ({ selectedOption, info }) => {
+  const [render, setRender] = useState(1);
+
+  useEffect(() => {
+    setRender(selectedOption);
+  }, [selectedOption]);
+
+  if (render === 1) {
+    return <ReporteInventario info={info} />;
+  }
+  if (render === 2) {
+    return <ReporteInventarioDistribuidor info={info} />;
+  }
+  if (render === 3) {
+    return <ReporteInventarioFabricante info={info} />;
+  }
+  if (render === 4) {
+    return <ReporteInventarioProveedor info={info} />;
+  }
+};
+
+export default MyDocument;
+
+const formatNumber = (number) => {
+  return "$ " + new Intl.NumberFormat("es-ES").format(number);
+};
+const ReporteInventario = ({ info }) => {
   const {
     dateQuery,
     data,
@@ -64,8 +92,444 @@ const MyDocument = ({ info }) => {
     </PDFViewer>
   );
 };
+const ReporteInventarioDistribuidor = ({ info }) => {
+  const {
+    dateQuery,
+    data,
+    totalDistribuidor,
+    totalDisponible,
+    totalInventario,
+  } = info;
+  return (
+    <PDFViewer style={styles.viewerStyles}>
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <View>
+            <Text style={[{ textAlign: "center" }, styles.bold]}>
+              REPORTE DE PRECIO DISTRIBUIDOR
+            </Text>
+            <Text>{dateQuery}</Text>
+            <Svg height="3" width="100%">
+              <Line
+                x1="0"
+                y1="0"
+                x2="800"
+                y2="0"
+                stroke="black"
+                strokeWidth="3"
+              />
+            </Svg>
+          </View>
+          <View>
+            <View style={styles.sectionProducts}>
+              <Text style={styles.headerCell}>Cod.</Text>
+              <Text style={styles.headerCell3}>Nombre Producto</Text>
+              <Text style={styles.headerCell2}>Presentación</Text>
+              <Text style={styles.headerCell}>P. Distribuidor</Text>
+              <Text style={styles.headerCell}>Disponible</Text>
+              <Text style={styles.headerCell}>V. Inventario</Text>
+            </View>
+            <Svg height="3" width="100%">
+              <Line
+                x1="0"
+                y1="0"
+                x2="800"
+                y2="0"
+                stroke="black"
+                strokeWidth="3"
+              />
+            </Svg>
+          </View>
+          <View>
+            <View>
+              {data.map((item) => (
+                <>
+                  <Text style={[styles.bold, { marginVertical: 10 }]}>
+                    {item.product}
+                  </Text>
+                  {item.products.map((product) => (
+                    <>
+                      <View style={styles.sectionProductsContent}>
+                        <Text style={styles.contentCell}>{product.cod}</Text>
+                        <Text style={styles.contentCell3}>{product.name}</Text>
+                        <Text style={styles.contentCell2}>
+                          {product.presentation}
+                        </Text>
+                        <Text style={styles.contentCell}>
+                          {formatNumber(product.distribuidor)}
+                        </Text>
+                        <Text style={styles.contentCell}>
+                          {product.disponible}
+                        </Text>
+                        <Text style={styles.contentCell}>
+                          {formatNumber(product.inventario)}
+                        </Text>
+                      </View>
+                    </>
+                  ))}
+                  <View
+                    style={[
+                      styles.sectionProductsContent,
+                      { marginVertical: 10 },
+                    ]}
+                  >
+                    <Text style={[styles.bold, styles.contentCell]}>
+                      {item.product}
+                    </Text>
+                    <Text style={styles.contentCell3}></Text>
+                    <Text style={styles.contentCell2}></Text>
+                    <Text style={[styles.bold, styles.contentCell]}>
+                      {formatNumber(item.secSubTotalDistribuidor)}
+                    </Text>
+                    <Text style={[styles.bold, styles.contentCell]}>
+                      {item.subTotalDisponible}
+                    </Text>
+                    <Text style={[styles.bold, styles.contentCell]}>
+                      {formatNumber(item.subTotalInventario)}
+                    </Text>
+                  </View>
+                </>
+              ))}
+            </View>
+          </View>
+          <Svg height="3" width="100%">
+            <Line
+              x1="0"
+              y1="0"
+              x2="800"
+              y2="0"
+              stroke="black"
+              strokeWidth="3"
+            />
+          </Svg>
 
-export default MyDocument;
+          <View style={[{ marginVertical: 10 }, styles.bold]}>
+            <View style={styles.sectionProductsContent}>
+              <Text style={[styles.bold, styles.contentCell]}>
+                Total general:
+              </Text>
+              <Text style={styles.contentCell3}></Text>
+              <Text style={styles.contentCell2}></Text>
+              <Text style={[styles.bold, styles.contentCell]}>
+                {formatNumber(totalDistribuidor)}
+              </Text>
+              <Text style={[styles.bold, styles.contentCell]}>
+                {totalDisponible}
+              </Text>
+              <Text style={[styles.bold, styles.contentCell]}>
+                {formatNumber(totalInventario)}
+              </Text>
+            </View>
+          </View>
+          <Svg height="3" width="100%">
+            <Line
+              x1="0"
+              y1="0"
+              x2="800"
+              y2="0"
+              stroke="black"
+              strokeWidth="3"
+            />
+          </Svg>
+        </Page>
+      </Document>
+    </PDFViewer>
+  );
+};
+const ReporteInventarioFabricante = ({ info }) => {
+  const { dateQuery, data, address, tel, web, totalDistribuidor, urlLogo } =
+    info;
+
+  return (
+    <PDFViewer style={styles.viewerStyles}>
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <View>
+            <Image
+              src={urlLogo}
+              style={{
+                height: "100",
+                marginBottom: 20,
+              }}
+            />
+          </View>
+          <View style={{ marginVertical: 10 }}>
+            <Svg height="3" width="100%">
+              <Line
+                x1="0"
+                y1="0"
+                x2="800"
+                y2="0"
+                stroke="black"
+                strokeWidth="3"
+              />
+            </Svg>
+          </View>
+          <View style={styles.sectionProducts}>
+            <Text>Dirección: {address}</Text>
+            <Text>Teléfono: {tel}</Text>
+            <Text>Web: {web}</Text>
+          </View>
+          <View style={{ marginVertical: 10 }}>
+            <Text>Fecha impresión: {dateQuery}</Text>
+          </View>
+          <View>
+            <View style={styles.sectionProducts}>
+              <Text style={styles.headerCell}>Cod.</Text>
+              <Text style={styles.headerCell3}>Nombre Producto</Text>
+              <Text style={styles.headerCell2}>Aplicación</Text>
+              <Text style={styles.headerCell}>P. Distribuidor</Text>
+            </View>
+          </View>
+          <View>
+            <View>
+              {data.map((item) => (
+                <>
+                  <Text style={[styles.bold, { marginVertical: 10 }]}>
+                    {item.product}
+                  </Text>
+                  {item.products.map((product) => (
+                    <>
+                      <View style={styles.sectionProductsContent}>
+                        <Text style={styles.contentCell}>{product.cod}</Text>
+                        <Text style={styles.contentCell3}>{product.name}</Text>
+                        <Text style={styles.contentCell2}>
+                          {product.aplication}
+                        </Text>
+                        <Text style={styles.contentCell}>
+                          {formatNumber(product.distribuidor)}
+                        </Text>
+                      </View>
+                    </>
+                  ))}
+                  <View style={{ marginVertical: 10 }}>
+                    <Svg height="3" width="100%">
+                      <Line
+                        x1="0"
+                        y1="0"
+                        x2="800"
+                        y2="0"
+                        stroke="black"
+                        strokeWidth="3"
+                      />
+                    </Svg>
+                  </View>
+                </>
+              ))}
+            </View>
+          </View>
+          <View style={[{ marginVertical: 10 }, styles.bold]}>
+            <View style={styles.sectionProductsContent}>
+              <Text style={[styles.bold, styles.contentCell]}>
+                Total general:
+              </Text>
+              <Text style={styles.contentCell3}></Text>
+              <Text style={styles.contentCell2}></Text>
+              <Text style={[styles.bold, styles.contentCell]}>
+                {formatNumber(totalDistribuidor)}
+              </Text>
+            </View>
+          </View>
+          <Svg height="3" width="100%">
+            <Line
+              x1="0"
+              y1="0"
+              x2="800"
+              y2="0"
+              stroke="black"
+              strokeWidth="3"
+            />
+          </Svg>
+        </Page>
+      </Document>
+    </PDFViewer>
+  );
+};
+const ReporteInventarioProveedor = ({ info }) => {
+  const {
+    dateQuery,
+    proveedor,
+    data,
+    totalVenta,
+    totalDistribuidor,
+    totalCosto,
+    totalDisponible,
+  } = info;
+  return (
+    <PDFViewer style={styles.viewerStyles}>
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <View>
+            <Text style={[{ textAlign: "center" }, styles.bold]}>
+              REPORTE PROVEEDOR
+            </Text>
+            <Text>{dateQuery}</Text>
+            <Svg height="3" width="100%">
+              <Line
+                x1="0"
+                y1="0"
+                x2="800"
+                y2="0"
+                stroke="black"
+                strokeWidth="3"
+              />
+            </Svg>
+            <Text style={[styles.underLine, { marginVertical: 10 }]}>
+              Proveedor
+            </Text>
+            <Svg height="3" width="100%">
+              <Line
+                x1="0"
+                y1="0"
+                x2="800"
+                y2="0"
+                stroke="black"
+                strokeWidth="3"
+              />
+            </Svg>
+            <Text style={{ marginVertical: 10 }}>{proveedor}</Text>
+
+            <Svg height="3" width="100%">
+              <Line
+                x1="0"
+                y1="0"
+                x2="800"
+                y2="0"
+                stroke="black"
+                strokeWidth="3"
+              />
+            </Svg>
+
+            <View>
+              <View style={styles.sectionProducts}>
+                <Text style={styles.headerCell}>Tipo Producto</Text>
+                <Text style={styles.headerCell}>Cod.</Text>
+                <Text style={styles.headerCell3}>Producto</Text>
+                <Text style={styles.headerCell}>P. Venta</Text>
+                <Text style={styles.headerCell}>P. Distribuidor</Text>
+                <Text style={styles.headerCell}>P. Costo</Text>
+                <Text style={styles.headerCell}>Disponible</Text>
+              </View>
+            </View>
+            <View style={{ marginBottom: 10 }}>
+              <Svg height="3" width="100%">
+                <Line
+                  x1="0"
+                  y1="0"
+                  x2="800"
+                  y2="0"
+                  stroke="black"
+                  strokeWidth="3"
+                />
+              </Svg>
+            </View>
+            <View>
+              <View>
+                {data.map((item) => (
+                  <>
+                    {item.products.map((product) => (
+                      <>
+                        <View style={styles.sectionProductsContent}>
+                          <Text style={styles.contentCell}>{item.product}</Text>
+                          <Text style={styles.contentCell}>{product.cod}</Text>
+                          <Text style={styles.contentCell3}>
+                            {product.name}
+                          </Text>
+                          <Text style={styles.contentCell}>
+                            {formatNumber(product.venta)}
+                          </Text>
+                          <Text style={styles.contentCell}>
+                            {formatNumber(product.distribuidor)}
+                          </Text>
+                          <Text style={styles.contentCell}>
+                            {formatNumber(product.costo)}
+                          </Text>
+                          <Text style={styles.contentCell}>
+                            {product.disponible}
+                          </Text>
+                        </View>
+                      </>
+                    ))}
+                    <View style={{ marginVertical: 10 }}>
+                      <Svg height="3" width="100%">
+                        <Line
+                          x1="0"
+                          y1="0"
+                          x2="800"
+                          y2="0"
+                          stroke="black"
+                          strokeWidth="3"
+                        />
+                      </Svg>
+                    </View>
+                  </>
+                ))}
+              </View>
+              <View style={[{ marginVertical: 10 }, styles.bold]}>
+                <View style={styles.sectionProductsContent}>
+                  <Text style={[styles.bold, styles.contentCell3]}>
+                    {proveedor}
+                  </Text>
+                  <Text style={styles.contentCell} />
+                  <Text style={styles.contentCell} />
+                  <Text style={styles.contentCell}>
+                    {formatNumber(totalVenta)}
+                  </Text>
+                  <Text style={styles.contentCell}>
+                    {formatNumber(totalDistribuidor)}
+                  </Text>
+                  <Text style={styles.contentCell}>
+                    {formatNumber(totalCosto)}
+                  </Text>
+                  <Text style={styles.contentCell}>{totalDisponible}</Text>
+                </View>
+              </View>
+              <Svg height="3" width="100%">
+                <Line
+                  x1="0"
+                  y1="0"
+                  x2="800"
+                  y2="0"
+                  stroke="black"
+                  strokeWidth="3"
+                />
+              </Svg>
+              <View style={[{ marginVertical: 10 }, styles.bold]}>
+                <View style={styles.sectionProductsContent}>
+                  <Text style={[styles.bold, styles.contentCell3]}>
+                    Total general:{" "}
+                  </Text>
+                  <Text style={styles.contentCell} />
+                  <Text style={styles.contentCell} />
+                  <Text style={styles.contentCell}>
+                    {formatNumber(totalVenta)}
+                  </Text>
+                  <Text style={styles.contentCell}>
+                    {formatNumber(totalDistribuidor)}
+                  </Text>
+                  <Text style={styles.contentCell}>
+                    {formatNumber(totalCosto)}
+                  </Text>
+                  <Text style={styles.contentCell}>{totalDisponible}</Text>
+                </View>
+              </View>
+              <Svg height="3" width="100%">
+                <Line
+                  x1="0"
+                  y1="0"
+                  x2="800"
+                  y2="0"
+                  stroke="black"
+                  strokeWidth="3"
+                />
+              </Svg>
+            </View>
+          </View>
+        </Page>
+      </Document>
+    </PDFViewer>
+  );
+};
 
 const Header = ({ dateQuery }) => {
   return (
@@ -108,7 +572,6 @@ const Header = ({ dateQuery }) => {
     </>
   );
 };
-
 const Content = ({
   dataUser,
   totalDistribuidor,
